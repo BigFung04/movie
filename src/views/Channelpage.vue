@@ -80,9 +80,9 @@ export default {
   transition: transform 0.3s ease; 
 }  
   
-.card-item:hover {  
+/* .card-item:hover {  
   transform: scale(1.02); 
-}  
+}   */
   
 .card-item img {  
   width: 100%;  

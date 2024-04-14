@@ -42,9 +42,9 @@ export default defineComponent({
   transition: transform 0.3s ease-in-out;
 }
 
-.card:hover {
+/* .card:hover {
   transform: translateY(-5px);
-}
+} */
 
 .card-content {  
   display: flex;  
