@@ -83,9 +83,7 @@ const channels = ref([
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* .top-image:hover {
-  transform: scale(1.05);
-} */
+
 
 .card-grid {
   display: grid;
@@ -115,9 +113,7 @@ const channels = ref([
   transition: transform 0.3s ease;
 }
 
-/* .card-image:hover {
-  transform: scale(1.05);
-} */
+
 
 .card-description {
   margin-top: 10px;
