@@ -4,14 +4,14 @@
       <ul class="nav-links">
         <router-link to="/discover" class="nav-link">发现</router-link>
         <router-link to="/channels" class="nav-link">频道</router-link>
-        <router-link to="/mine" class="nav-link">我的</router-link>
+        <router-link to="/mine" class="nav-link">个人</router-link>
       </ul>
 
       <div class="search-container">
         <div class="search-input-group">
           <input type="text" v-model="searchQuery" placeholder="搜索" @focus="showPanel = true"
             @blur="hidePanelOnDelay" />
-          <button @click="showPanel = false">取消</button>
+          <button class="cancel-button" @click="showPanel = false">取消</button>
         </div>
 
         <transition name="fade">
@@ -22,8 +22,7 @@
 
             <div class="search-panel-body">
               <div class="search-panel-buttons">
-                <button v-for="(option, key) in contentOptions" :key="key" @mouseover="displayContent = option.value"
-                  @click="displayContent = option.value">
+                <button v-for="(option, key) in contentOptions" :key="key" @click="displayContent = option.value">
                   {{ key }}
                 </button>
               </div>
@@ -38,7 +37,6 @@
                 </div>
 
                 <div v-if="displayContent === 'sorted'" class="content-sorted">
-                  <!-- Add your button content here -->
                 </div>
 
                 <div v-if="displayContent === 'channels'" class="content-channels">
@@ -56,6 +54,7 @@
     </div>
   </nav>
 </template>
+
 <script>
 import { ref, onUnmounted } from 'vue';
 export default {
@@ -67,11 +66,11 @@ export default {
     const displayContent = ref('');
     const contentOptions = ref({
       影片: { key: '影片', value: 'drama' },
-      默认排序: { key: '默认排序', value: 'sorted' },
+      排序: { key: '排序', value: 'sorted' },
       全部频道: { key: '全部频道', value: 'channels' }
     });
-    const dramas = ref(['飞驰人生2', '星汉灿烂 月生沧海', '苍兰诀', '要久久爱', '长相思', '宁安如梦', '云之羽', '归路']);
-    const sorted = ref(['飞驰认识2', '星汉灿烂 月生沧海', '苍兰诀', '要久久爱', '长相思', '宁安如梦', '云之羽', '归路']);
+    const dramas = ref(['敢死队', '热烈', '星际迷航', '天下无双', '大路朝天', '闪闪亮星星', '阿飞正传', '智取威虎山']);
+    const sorted = ref(['敢死队', '热烈', '星际迷航', '天下无双', '大路朝天', '闪闪亮星星', '阿飞正传', '智取威虎山']);
     const channels = ref([
       '全部频道', '创意', '励志', '搞笑', '运动', '旅行', '爱情', '广告',
       '动画', '剧情', '音乐', '科幻', '记录', '预告', '混剪', '实验',
@@ -124,192 +123,100 @@ export default {
 </script>
 
 <style scoped>
-.navigation-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.nav-links {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  margin-right: auto;
-  font-size: px;
-}
-
-.nav-link {
-  color: #fff;
-  font-size: 1.333em;
-  font-weight: 500;
-  line-height: 60px;
-  padding: 0 1rem;
-  text-decoration: none;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: #f4f4f4;
+@media (max-width: 768px) {
+  .navigation-bar {
+    height: 160px;
+    background: linear-gradient(135deg, hsl(191, 69%, 75%), #f1c3e6);
   }
-}
 
-.center-links {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 50%;
-  margin: 0 auto;
-}
-
-.search-container {
-  position: fixed;
-  width: 100%;
-  top: 20px;
-  right: 50px;
-  max-width: 300px;
-  margin: 20px;
- 
-}
-
-.search-input-group {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  
-}
-
-.search-input-group input {
-  flex: 1;
-  height: 36px;
-  padding: 0 1rem;
-  background-color: #333;
-  border: none;
-  border-radius: 4px 0 0 4px;
-  color: #fff;
-  font-size: 0.875em;
-  outline: none;
-  background-color: rgb(228, 231, 230);
-}
-
-.search-input-group button {
-  height: 36px;
-  padding: 0 1rem;
-  background-color: #333;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  color: #fff;
-  font-size: 0..jpgem;
-  cursor: pointer;
-  outline: none;
-  background-color: rgb(128, 128, 128);
-}
-
-.search-panel {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  width: 300px;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  overflow: auto;
-  z-index: 1000;
-  transition: transform 0.3s ease;
-
-  &.hidden {
-    transform: translateY(-100%);
+  .nav-links {
+    font-size: 22px;
   }
-}
 
-.search-panel-header {
-  padding: 8px 16px;
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #eaeaea;
-}
+  .nav-link {
+    padding: 0 1.5rem;
+  }
 
-.panel-title {
-  color: #666;
-  font-size: 0.875em;
-  font-weight: 500;
-  margin: 0;
-}
+  .search-container {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
 
-.search-panel-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 8px 16px;
-  border-bottom: 1px solid #eaeaea;
-}
+  .search-input-group input {
+    height: 30px;
+    font-size: 12px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+  }
 
-.search-panel-buttons button {
-  flex: 0 0 calc(33.33% - 10px);
-  margin-right: 8px;
-  margin-bottom: 8px;
-  padding: 10px 8px;
-  background-color: #f8f8f8;
-  border: 1px solid #eaeaea;
-  border-radius: 4px;
-  color: #666;
-  font-size: 0.875em;
-  cursor: pointer;
-  outline: none;
-
-  &:hover {
+  .cancel-button {
+    height: 30px;
+    font-size: 12px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 6px 6px 6px 6px;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    outline: none;
+  }
+  .cancel-button:hover {
     background-color: #ebebeb;
-    border-color: #d6d6d6;
-    color: #444;
   }
 
-  &:last-child {
-    margin-right: 0;
+  .search-panel {
+    top: calc(100% + 5px);
+    width: 250px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    overflow: auto;
   }
-}
 
-.content-section {
-  padding: 8px 16px;
-}
+  .search-panel-header {
+    padding: 8px 16px;
+    background-color: #f8f8f8;
+    border-radius: 8px 8px 0 0;
+  }
 
-.content-dramas .content-buttons,
-.content-channels .content-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 8px;
-}
+  .panel-title {
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+  }
 
-.content-buttons button {
-  height: 36px;
-  padding: 0 1rem;
-  background-color: #f8f8f8;
-  border: 1px solid #eaeaea;
-  border-radius: 4px;
-  color: #666;
-  font-size: 0.875em;
-  cursor: pointer;
-  outline: none;
-
-  &:hover {
+  .search-panel-buttons button {
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    border: 1px solid #eaeaea;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .search-panel-buttons button:hover {
     background-color: #ebebeb;
-    border-color: #d6d6d6;
-    color: #444;
   }
-}
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+  .content-buttons button {
+    height: 30px;
+    padding: 0.5rem;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    margin: 0.5rem;
+    transition: background-color 0.3s ease;
+  }
+  .content-buttons button:hover {
+    background-color: #ebebeb;
+  }
 }
 </style>

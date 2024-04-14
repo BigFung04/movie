@@ -31,12 +31,12 @@ export default {
       successMessage.value = '';  
       errorMessage.value = '';  
   
-      if (username.value === '00' && password.value === '123456') {  
-        successMessage.value = '登录成功';  
+      if (username.value === '咖喱饭' && password.value === 'man') {  
+        successMessage.value = '恭喜你成功登录秘密基地，准备起飞！';  
         await router.push('/mine'); 
         successMessage.value = ''; 
       } else {  
-        errorMessage.value = '用户名或密码错误';  
+        errorMessage.value = '用户名或密码错误，看来你不是村里人';  
       }  
   
       isSubmitting.value = false;  

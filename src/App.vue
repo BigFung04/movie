@@ -8,7 +8,7 @@
   
 <script>  
 import Navigation from './components/Navigation.vue';  
-import MineView from './views/MineView.vue'; 
+import MineView from './views/Personalpage.vue'; 
 export default {  
   name: 'App',  
   components: {  

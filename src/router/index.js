@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';  
-import ChannelsView from '@/views/ChannelsView.vue';  
-import MineView from '@/views/MineView.vue';  
-import DiscoverView from '@/views/DiscoverView.vue'; 
+import Channelpage from '@/views/Channelpage.vue';  
+import MineView from '@/views/Personalpage.vue';  
+import Discoverpage from '@/views/Discoverpage.vue'; 
 import Card from '@/views/Card.vue';
 import VideoPage from '@/views/VideoPage.vue';
 import Login from '@/views/Login.vue';
@@ -13,12 +13,12 @@ const routes = [
   {  
     path: '/discover',  
     name: 'Discover',  
-    component: DiscoverView,  
+    component: Discoverpage,  
   },  
   {  
     path: '/channels',  
     name: 'Channels',  
-    component: ChannelsView,  
+    component: Channelpage,  
   },  
   {  
     path: '/mine',  
@@ -40,15 +40,12 @@ const routes = [
       name: 'Login',  
       component: Login  
     } ,
-   // 在路由配置数组中增加如下一行
-{
-  path: '/video/:id',
-  name: 'VideoPage',
-  component: VideoPage
-},
- 
 
-
+    {
+     path: '/video/:id',
+     name: 'VideoPage',
+     component: VideoPage
+    },
 ];  
   
 const router = createRouter({  
